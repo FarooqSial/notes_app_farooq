@@ -20,6 +20,9 @@ class Navigation extends StatelessWidget {
     NotesController controller = Get.put(NotesController());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30)
+        ),
         backgroundColor: NotesColor.boxColor,
         onPressed: () {
           Get.to(

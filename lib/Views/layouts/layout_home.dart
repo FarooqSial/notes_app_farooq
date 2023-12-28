@@ -13,48 +13,60 @@ class LayoutHome extends StatelessWidget {
     NotesController controller = Get.put(NotesController());
     return Obx(
       () {
-        return SafeArea(
-          child: controller.notesList.isNotEmpty
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller.notesList.length,
-                  itemBuilder: (context, index) => Card(
-                    color: NotesColor.boxColor,
-                    child: ListItem(
-                      title: controller.notesList[index]['title'] ?? '',
-                      data: controller.notesList[index]['data'] ?? '',
-                    ),
-                  ),
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/Illustration.png')
-                        .onlyPadding(5.h, 0, 0, 0),
-                    Text(
-                      'Start Your Journey',
-                      style: TextStyle(
-                        color: NotesColor.blackColor,
-                        fontFamily: 'poppinsRegular',
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w900,
+        return Scaffold(
+          appBar: AppBar(
+            actions: [
+              GestureDetector(
+                onTap: (){
+                  controller.notesList.clear();
+                },
+                child: Icon(Icons.delete).paddingOnly(right: 10.sp),
+              ),
+            ],
+          ),
+          body: SafeArea(
+            child: controller.notesList.isNotEmpty
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.notesList.length,
+                    itemBuilder: (context, index) => Card(
+                      color: NotesColor.boxColor,
+                      child: ListItem(
+                        title: controller.notesList[index]['title'] ?? '',
+                        data: controller.notesList[index]['data'] ?? '',
                       ),
-                    ).onlyPadding(10.sp, 0, 10.sp, 0),
-                    Text(
-                      'Every big step start with small step. Notes your first idea and start your journey!',
-                      style: TextStyle(
-                        color: NotesColor.testColor,
-                        fontFamily: 'poppinsRegular',
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w400,
+                    ),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/images/Illustration.png')
+                          .onlyPadding(5.h, 0, 0, 0),
+                      Text(
+                        'Start Your Journey',
+                        style: TextStyle(
+                          color: NotesColor.blackColor,
+                          fontFamily: 'poppinsRegular',
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ).onlyPadding(10.sp, 0, 10.sp, 0),
+                      Text(
+                        'Every big step start with small step. Notes your first idea and start your journey!',
+                        style: TextStyle(
+                          color: NotesColor.testColor,
+                          fontFamily: 'poppinsRegular',
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Image.asset(
-                      'assets/images/Arrow.png',
-                    ),
-                  ],
-                ).symmetricPadding(15.w, 0),
+                      Image.asset(
+                        'assets/images/Arrow.png',
+                      ),
+                    ],
+                  ).symmetricPadding(15.w, 0),
+          ),
         );
       },
     );

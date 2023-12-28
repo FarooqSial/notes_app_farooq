@@ -77,22 +77,24 @@ class ScreenAddNotes extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 0),
-              decoration: BoxDecoration(
-                color: NotesColor.boxColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Map<String, String> newNotes = {
-                      "title": _titleController.text,
-                      "data": _dataController.text,
-                    };
-                    controller.notesList.add(newNotes);
-                    // Get.back;
-                  },
+            GestureDetector(
+              onTap: (){
+                  Map<String, String> newNotes = {
+                    "title": _titleController.text,
+                    "data": _dataController.text,
+                  };
+                  controller.notesList.add(newNotes);
+                  _titleController.clear();
+                  _dataController.clear();
+                  Get.back();
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 0),
+                decoration: BoxDecoration(
+                  color: NotesColor.boxColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
                   child: Text(
                     'Save',
                     style: TextStyle(
@@ -101,8 +103,8 @@ class ScreenAddNotes extends StatelessWidget {
                         fontFamily: 'poppinsRegular'),
                   ),
                 ),
-              ),
-            ).onlyPadding(0, 0, 20.sp, 0),
+              ).onlyPadding(0, 0, 20.sp, 0),
+            ),
           ],
         ).symmetricPadding(25.sp, 0),
       ),
